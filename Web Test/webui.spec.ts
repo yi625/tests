@@ -1,17 +1,17 @@
 import { test } from '@playwright/test';
-import { LoginPage } from '../../src/loginpage';
-import { ProductsPage } from '../../src/productpage';
-import { CheckoutPage } from '../../src/Page/checkpage';
+import { LoginPage } from '../Web Test/src/page/loginpage';
+import { ProductsPage } from '../Web Test/src/page/productpage';
+import { CheckoutPage } from '../Web Test/src/page/checkpage';
 
 
-test('verify login error', async ({ page }) => {
+test('1. verify login error', async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.navigate();
     await loginPage.login('standard_user', 'asd123');
     await loginPage.verifyErrorMessage('Username and password do not match');
 });
 
-test('Verify cart count', async ({ page }) => {
+test('2. Verify cart count', async ({ page }) => {
     const loginPage = new LoginPage(page);
     const productsPage = new ProductsPage(page);
 
@@ -31,7 +31,7 @@ test('Verify cart count', async ({ page }) => {
     await productsPage.verifyCartCount('0');
 });
 
-test('Completethe purchase', async ({ page }) => {
+test('3. Completethe purchase', async ({ page }) => {
     const loginPage = new LoginPage(page);
     const productsPage = new ProductsPage(page);
     const checkoutPage = new CheckoutPage(page);
