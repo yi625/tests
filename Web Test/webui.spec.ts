@@ -1,7 +1,8 @@
 import { test } from '@playwright/test';
-import { LoginPage } from './src/page/loginpage';
-import { ProductsPage } from './src/Page/productpage';
-import { CheckoutPage } from './src/Page/checkpage';
+import { LoginPage } from '../../src/loginpage';
+import { ProductsPage } from '../../src/productpage';
+import { CheckoutPage } from '../../src/Page/checkpage';
+
 
 test('verify login error', async ({ page }) => {
     const loginPage = new LoginPage(page);
