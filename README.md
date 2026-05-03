@@ -5,15 +5,12 @@
   - npx playwright test --ui    (Able to view the the test with UI interface)
   - npx playwright test
 
+  
+3. Create Generate report
+  - npx playwright test --reporter=html
 
   
-
-3. Create Generate report
-       - npx playwright test --reporter=html
-
-5. Display report
-    - npx playwright show-report
+4. Display report
+  - npx playwright show-report
 
 
-
- Web Automation - 
