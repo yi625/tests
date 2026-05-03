@@ -11,7 +11,10 @@
   - npx playwright test --reporter=html
 
   
+
+  
 4. Display report
   - npx playwright show-report
-
+  - click view trace able to view the screenshot 
+  - make sure got run with UI
 
