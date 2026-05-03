@@ -7,6 +7,7 @@
 
   
 3. Create Generate report
+  -npx playwright test --ui --reporter=html
   - npx playwright test --reporter=html
 
   
