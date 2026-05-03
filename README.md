@@ -18,3 +18,9 @@
   - click view trace able to view the screenshot 
   - make sure got run with UI
 
+
+5. API automation 
+  - found out that after update /deelete, the data remain the same ,it show in the guide https://jsonplaceholder.typicode.com/guide/
+  - even i run in postman, after patch then get, the record//data still remain the same ,delete also will still showing the same data
+
+
