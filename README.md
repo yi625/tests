@@ -23,7 +23,7 @@
   - found out that after update /deelete, the data remain the same ,it show in the guide https://jsonplaceholder.typicode.com/guide/
   - even i run in postman, after patch then get, the record//data still remain the same ,delete also will still showing the same data
   - can run "npx playwright test --ui --reporter=html" for all both api and web
-  - to run specfic "npx playwright test tests/API test/apiauto.spec.ts --reporter=html"  (depends on the path, just rightclick the file and copy)
+  - to run specfic "npx playwright test tests/API test/apiauto.spec.ts --reporter=html"  (depends on the path, just rightclick the file and copy path)
   - run npx playwright show-report" to get latest report 
 
 
