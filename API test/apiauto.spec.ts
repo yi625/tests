@@ -4,12 +4,12 @@ test.describe('API Tests', () => {
     const baseUrl = 'https://jsonplaceholder.typicode.com';
     let postId: number; 
 
-    /* * Note: JSONPlaceholder is a fake API. It says it creates data, 
-     * but it doesn't actually save it to their database. 
-     * Because of this, we will use ID 1 for the Read, Update, and Delete steps 
+    /*  Notee: JSONPlaceholder is a fake API. It says it creates data, 
+      but it doesn't actually save it to their database. 
      */
 
     test('1. CREATE - Post new data', async ({ request }) => {
+        const startTime = Date.now();
         const response = await request.post(`${baseUrl}/posts`, {
             data: {
                 title: 'Test Assessment',
@@ -18,14 +18,17 @@ test.describe('API Tests', () => {
             }
         });
 
-        // 1. Create success
+        // Create success
         expect(response.status()).toBe(201); 
-        
         const data = await response.json();
         
-        // 2. Check if the data we sent matches what came back
+        // Check if the data we sent matches what came back
         expect(data.title).toBe('Test Assessment');
         expect(data.body).toBe('Testing the create function');
+
+        //Validate time taken less than 2sec
+        const timeItTook = Date.now() - startTime;
+        expect(timeItTook).toBeLessThan(2000);
         
         // Save the new ID, but force it to 1 because of the fake API limitation
         postId = data.id; 
@@ -38,8 +41,12 @@ test.describe('API Tests', () => {
         
         const data = await response.json();
         
-        // Just verify we got the right ID back
+        // Verify the correct ID back and numbers
         expect(data.id).toBe(postId);
+        expect(typeof data.id).toBe('number');
+        // Verify tittle to be string and not empty
+        expect(typeof data.title).toBe('string')
+        expect(data.title.length).toBeGreaterThan(0);
     });
 
     test('3. UPDATE - Change the title', async ({ request }) => {
@@ -69,11 +76,27 @@ test.describe('API Tests', () => {
 
     });
 
-    test('5. NEGATIVE TEST - Try to get a fake ID', async ({ request }) => {
-        // ID 999999 does not exist
+    test('5. Test return Error for ID', async ({ request }) => {
         const response = await request.get(`${baseUrl}/posts/999999`);
         
-        // It should return 404 Not Found
+        // Expect return 404 Not Found due to id not exist
         expect(response.status()).toBe(404);
     });
+
+    test('6. Test return Error for ID with alphabet', async ({ request }) => {
+        const response = await request.get(`${baseUrl}/posts/abc`);
+    
+        // Expect return error 404 due to id only alllow number
+        expect(response.status()).toBe(404);
+    });
+
+    test('7. Test return Error with wrong http', async ({ request }) => {
+        const response = await request.post(`${baseUrl}/posts/1`, {
+            data: { title: 'This should fail' }
+        });
+        
+        // Expect return error 404 
+        expect(response.status()).toBe(404); 
+    });
+
 });
